@@ -14,7 +14,7 @@ public class CreativeTabsSS
 	public static final CreativeTabs TAB_SS = new CreativeTabs(Reference.ModID + ":tabBasic.name")
 		{
 			@Override
-			public ItemStack getIconItemStack()
+			public ItemStack createIcon()
 			{
 				// FIX: Change creative tab icon if user has disabled the Stone Shield
 				//if(!ConfigHandler.enableStoneShield)
@@ -27,14 +27,13 @@ public class CreativeTabsSS
 					return new ItemStack(Items.SHIELD);
 			}
 
-			@Override
-			public ItemStack getTabIconItem() 
+			public ItemStack getTabIconItem()
 			{
 				// FIX: Change creative tab icon if user has disabled the Stone Shield
 				//if(!ConfigHandler.enableStoneShield)
 				//	return ItemRegistrySS.shieldWood;
 				
-				return getIconItemStack();
+				return createIcon();
 			}
 		};
 }

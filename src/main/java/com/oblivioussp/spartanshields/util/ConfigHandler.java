@@ -93,9 +93,12 @@ public class ConfigHandler
 	public static boolean forceDisableUncraftableTooltips = false;
 	public static boolean enableSpikesEnchantment = true;
 	public static boolean disableTowerShields = false;
+	public static float durabilityMultiplierTowerShields = Reference.DefaultDurabilityMultiplierTowerShield;
 	public static boolean disableStandardShields = false;
+	public static float durabilityMultiplierStandardShields = Reference.DefaultDurabilityMultiplierStandardShield;
 	public static int cooldownShieldBash = 30;
 	public static boolean disableShieldBash = false;
+	public static boolean disableTowerShieldBashOnly = false;
 	
 	public static final String categoryVanilla = "vanilla";
 	public static final String categoryModdedCommon = "moddedCommon";
@@ -143,9 +146,12 @@ public class ConfigHandler
 		forceDisableUncraftableTooltips = getBoolean("forceDisableUncraftableTooltips", Configuration.CATEGORY_GENERAL, false, "Will force the uncraftable shield tooltip (highlighted in red) to not appear. Useful for modpack makers who wish to change recipes.");
 		enableSpikesEnchantment = getBoolean("enableSpikesEnchantment", Configuration.CATEGORY_GENERAL, true, "Set to false to completely disable the Spikes enchantment.");
 		disableTowerShields = getBoolean("disableTowerShields", Configuration.CATEGORY_GENERAL, false, "Set to disable all Tower Shields in the mod.");
+		durabilityMultiplierTowerShields = getFloat("durabilityMultiplierTowerShields", Configuration.CATEGORY_GENERAL, Reference.DefaultDurabilityMultiplierTowerShield, 0.1F, Float.MAX_VALUE, "Tweaks the durability multiplier of the Tower Shields.");
 		disableStandardShields = getBoolean("disableStandardShields", Configuration.CATEGORY_GENERAL, false, "Set to disable all Standard Shields in the mod. Tower Shields are unaffected.");
+		durabilityMultiplierStandardShields = getFloat("durabilityMultiplierStandardShields", Configuration.CATEGORY_GENERAL, Reference.DefaultDurabilityMultiplierStandardShield, 0.1F, Float.MAX_VALUE, "Tweaks the durability multiplier of the Standard Shields.");
 		cooldownShieldBash = getInt("cooldownShieldBash", Configuration.CATEGORY_GENERAL, Reference.DefaultCooldownShieldBash, 1, 1000, "Cooldown period for Shield Bashes.");
 		disableShieldBash = getBoolean("disableShieldBash", Configuration.CATEGORY_GENERAL, false, "Set to true to disable the Shield Bash feature.");
+		disableTowerShieldBashOnly = getBoolean("disableTowerShieldBashOnly", Configuration.CATEGORY_GENERAL, false, "Set to true to disable the Shield Bash feature only for tower shield.");
 		
 		durabilityWoodShield = getInt("durabilityWoodShield", categoryVanilla, Reference.DefaultDurabilityWoodShield, 1, 100000, "Tweaks the durability of the Crude Wooden Shield.");
 		durabilityStoneShield = getInt("durabilityStoneShield", categoryVanilla, Reference.DefaultDurabilityStoneShield, 1, 100000, "Tweaks the durability of the Stone Braced Shield.");
@@ -232,6 +238,11 @@ public class ConfigHandler
 	public static int getInt(String name, String category, int defaultValue, int minValue, int maxValue, String comment)
 	{
 		return config.getInt(name, category, defaultValue, minValue, maxValue, comment, String.format("%s.%s:%s", "config", Reference.ModID, name));
+	}
+
+	public static float getFloat(String name, String category, float defaultValue, float minValue, float maxValue, String comment)
+	{
+		return config.getFloat(name, category, defaultValue, minValue, maxValue, comment, String.format("%s.%s:%s", "config", Reference.ModID, name));
 	}
 	
 	public static boolean getBoolean(String name, String category, boolean defaultValue, String comment)

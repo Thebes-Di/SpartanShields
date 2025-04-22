@@ -61,7 +61,7 @@ public class ItemShieldBasic extends ItemShieldBase
     		EnumDyeColor dyeColor = TileEntityBanner.getColor(stack);
     		tooltip.add("");
     		tooltip.add(StringHelper.translateString("hasPatterns", "tooltip"));
-    		tooltip.add(I18n.translateToLocal("item.banner." + dyeColor.getUnlocalizedName() + ".name"));
+    		tooltip.add(I18n.translateToLocal("item.banner." + dyeColor.getTranslationKey() + ".name"));
     		ItemBanner.appendHoverTextFromTileEntityTag(stack, tooltip);
     	}
     	

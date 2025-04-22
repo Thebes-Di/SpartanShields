@@ -17,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
@@ -67,7 +68,11 @@ public class EventHandlerClient
 			}
 			if(shieldStack.isEmpty() || shieldHand == null)
 				return;
-			
+            ItemShieldBase shield = (ItemShieldBase) shieldStack.getItem();
+            if(ConfigHandler.disableTowerShieldBashOnly && shield.isTowerShield()){
+                return;
+            }
+
 			if(player.getCooldownTracker().hasCooldown(shieldStack.getItem()))
 				return;
 			
@@ -202,7 +207,7 @@ public class EventHandlerClient
                 }
 
                 Vec3d lookVec = renderViewEntity.getLook(0);
-                Vec3d vec3d2 = eyePos.addVector(lookVec.x * d0, lookVec.y * d0, lookVec.z * d0);
+                Vec3d vec3d2 = eyePos.add(lookVec.x * d0, lookVec.y * d0, lookVec.z * d0);
                 Entity pointedEntity = null;
                 Vec3d vec3d3 = null;
 //                float f = 1.0F;

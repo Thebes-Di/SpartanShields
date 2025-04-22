@@ -112,32 +112,38 @@ public class ItemRegistrySS
 		
 		if(!ConfigHandler.disableStandardShields)
 		{
-			shieldWood = new ItemShieldBasic("shield_basic_wood", ConfigHandler.durabilityWoodShield, ToolMaterial.WOOD);
-			shieldStone = new ItemShieldBasic("shield_basic_stone", ConfigHandler.durabilityStoneShield, ToolMaterial.STONE);
-			shieldIron = new ItemShieldBasic("shield_basic_iron", ConfigHandler.durabilityIronShield, ToolMaterial.IRON);
-			shieldGold = new ItemShieldBasic("shield_basic_gold", ConfigHandler.durabilityGoldShield, ToolMaterial.GOLD);
-			shieldDiamond = new ItemShieldBasic("shield_basic_diamond", ConfigHandler.durabilityDiamondShield, ToolMaterial.DIAMOND);
+			shieldWood = new ItemShieldBasic("shield_basic_wood", Math.round(ConfigHandler.durabilityWoodShield * ConfigHandler.durabilityMultiplierStandardShields), ToolMaterial.WOOD);
+			shieldStone = new ItemShieldBasic("shield_basic_stone", Math.round(ConfigHandler.durabilityStoneShield * ConfigHandler.durabilityMultiplierStandardShields), ToolMaterial.STONE);
+			shieldIron = new ItemShieldBasic("shield_basic_iron", Math.round(ConfigHandler.durabilityIronShield * ConfigHandler.durabilityMultiplierStandardShields), ToolMaterial.IRON);
+			shieldGold = new ItemShieldBasic("shield_basic_gold", Math.round(ConfigHandler.durabilityGoldShield * ConfigHandler.durabilityMultiplierStandardShields), ToolMaterial.GOLD);
+			shieldDiamond = new ItemShieldBasic("shield_basic_diamond", Math.round(ConfigHandler.durabilityDiamondShield * ConfigHandler.durabilityMultiplierStandardShields), ToolMaterial.DIAMOND);
 			
 			reg.registerAll(shieldWood, shieldStone, shieldIron, shieldGold, shieldDiamond);
 			if(ConfigHandler.enableObsidianShield)
 			{
-				shieldObsidian = new ItemShieldObsidian("shield_basic_obsidian", ConfigHandler.durabilityObsidianShield, ModHelper.materialObsidian);
+				shieldObsidian = new ItemShieldObsidian("shield_basic_obsidian", Math.round(ConfigHandler.durabilityObsidianShield * ConfigHandler.durabilityMultiplierStandardShields), ModHelper.materialObsidian);
 				reg.register(shieldObsidian);
 			}
 		}
 
 		if(!ConfigHandler.disableTowerShields)
 		{
-			shieldTowerWood = new ItemShieldBasic("shield_tower_wood", ConfigHandler.durabilityWoodShield, ToolMaterial.WOOD);
-			shieldTowerStone = new ItemShieldBasic("shield_tower_stone", ConfigHandler.durabilityStoneShield, ToolMaterial.STONE);
-			shieldTowerIron = new ItemShieldBasic("shield_tower_iron", ConfigHandler.durabilityIronShield, ToolMaterial.IRON);
-			shieldTowerGold = new ItemShieldBasic("shield_tower_gold", ConfigHandler.durabilityGoldShield, ToolMaterial.GOLD);
-			shieldTowerDiamond = new ItemShieldBasic("shield_tower_diamond", ConfigHandler.durabilityDiamondShield, ToolMaterial.DIAMOND);
+			shieldTowerWood = new ItemShieldBasic("shield_tower_wood", Math.round(ConfigHandler.durabilityWoodShield * ConfigHandler.durabilityMultiplierTowerShields),ToolMaterial.WOOD);
+			shieldTowerWood.setTowerShield(true);
+			shieldTowerStone = new ItemShieldBasic("shield_tower_stone", Math.round(ConfigHandler.durabilityStoneShield * ConfigHandler.durabilityMultiplierTowerShields),ToolMaterial.STONE);
+			shieldTowerStone.setTowerShield(true);
+			shieldTowerIron = new ItemShieldBasic("shield_tower_iron", Math.round(ConfigHandler.durabilityIronShield * ConfigHandler.durabilityMultiplierTowerShields),ToolMaterial.IRON);
+			shieldTowerIron.setTowerShield(true);
+			shieldTowerGold = new ItemShieldBasic("shield_tower_gold", Math.round(ConfigHandler.durabilityGoldShield * ConfigHandler.durabilityMultiplierTowerShields),ToolMaterial.GOLD);
+			shieldTowerGold.setTowerShield(true);
+			shieldTowerDiamond = new ItemShieldBasic("shield_tower_diamond", Math.round(ConfigHandler.durabilityDiamondShield * ConfigHandler.durabilityMultiplierTowerShields),ToolMaterial.DIAMOND);
+			shieldTowerDiamond.setTowerShield(true);
 			
 			reg.registerAll(shieldTowerWood, shieldTowerStone, shieldTowerIron, shieldTowerGold, shieldTowerDiamond);
 			if(ConfigHandler.enableObsidianShield)
 			{
-				shieldTowerObsidian = new ItemShieldObsidian("shield_tower_obsidian", ConfigHandler.durabilityObsidianShield, ModHelper.materialObsidian);
+				shieldTowerObsidian = new ItemShieldObsidian("shield_tower_obsidian", Math.round(ConfigHandler.durabilityObsidianShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialObsidian);
+				shieldTowerObsidian.setTowerShield(true);
 				reg.register(shieldTowerObsidian);
 			}
 		}
@@ -149,12 +155,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldBronze = new ItemShieldExtraMaterial("shield_basic_bronze", ConfigHandler.durabilityBronzeShield, ModHelper.materialBronze, "ingotBronze");
+					shieldBronze = new ItemShieldExtraMaterial("shield_basic_bronze", Math.round(ConfigHandler.durabilityBronzeShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialBronze, "ingotBronze");
 					reg.register(shieldBronze);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerBronze = new ItemShieldExtraMaterial("shield_tower_bronze", ConfigHandler.durabilityBronzeShield, ModHelper.materialBronze, "ingotBronze");
+					shieldTowerBronze = new ItemShieldExtraMaterial("shield_tower_bronze", Math.round(ConfigHandler.durabilityBronzeShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialBronze, "ingotBronze");
+					shieldTowerBronze.setTowerShield(true);
 					reg.register(shieldTowerBronze);
 				}
 			}
@@ -162,12 +169,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldSteel = new ItemShieldExtraMaterial("shield_basic_steel", ConfigHandler.durabilitySteelShield, ModHelper.materialSteel, "ingotSteel");
+					shieldSteel = new ItemShieldExtraMaterial("shield_basic_steel", Math.round(ConfigHandler.durabilitySteelShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialSteel, "ingotSteel");
 					reg.register(shieldSteel);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerSteel = new ItemShieldExtraMaterial("shield_tower_steel", ConfigHandler.durabilitySteelShield, ModHelper.materialSteel, "ingotSteel");
+					shieldTowerSteel = new ItemShieldExtraMaterial("shield_tower_steel", Math.round(ConfigHandler.durabilitySteelShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialSteel, "ingotSteel");
+					shieldTowerSteel.setTowerShield(true);
 					reg.register(shieldTowerSteel);
 				}
 			}
@@ -175,12 +183,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldCopper = new ItemShieldExtraMaterial("shield_basic_copper", ConfigHandler.durabilityCopperShield, ModHelper.materialCopper, "ingotCopper");
+					shieldCopper = new ItemShieldExtraMaterial("shield_basic_copper", Math.round(ConfigHandler.durabilityCopperShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialCopper, "ingotCopper");
 					reg.register(shieldCopper);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerCopper = new ItemShieldExtraMaterial("shield_tower_copper", ConfigHandler.durabilityCopperShield, ModHelper.materialCopper, "ingotCopper");
+					shieldTowerCopper = new ItemShieldExtraMaterial("shield_tower_copper", Math.round(ConfigHandler.durabilityCopperShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialCopper, "ingotCopper");
+					shieldTowerCopper.setTowerShield(true);
 					reg.register(shieldTowerCopper);
 				}
 			}
@@ -188,12 +197,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldTin = new ItemShieldExtraMaterial("shield_basic_tin", ConfigHandler.durabilityTinShield, ModHelper.materialTin, "ingotTin");
+					shieldTin = new ItemShieldExtraMaterial("shield_basic_tin", Math.round(ConfigHandler.durabilityTinShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialTin, "ingotTin");
 					reg.register(shieldTin);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerTin = new ItemShieldExtraMaterial("shield_tower_tin", ConfigHandler.durabilityTinShield, ModHelper.materialTin, "ingotTin");
+					shieldTowerTin = new ItemShieldExtraMaterial("shield_tower_tin", Math.round(ConfigHandler.durabilityTinShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialTin, "ingotTin");
+					shieldTowerTin.setTowerShield(true);
 					reg.register(shieldTowerTin);
 				}
 			}
@@ -201,12 +211,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldSilver = new ItemShieldSilver("shield_basic_silver", ConfigHandler.durabilitySilverShield, ModHelper.materialSilver, "ingotSilver");
+					shieldSilver = new ItemShieldSilver("shield_basic_silver", Math.round(ConfigHandler.durabilitySilverShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialSilver, "ingotSilver");
 					reg.register(shieldSilver);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerSilver = new ItemShieldSilver("shield_tower_silver", ConfigHandler.durabilitySilverShield, ModHelper.materialSilver, "ingotSilver");
+					shieldTowerSilver = new ItemShieldSilver("shield_tower_silver", Math.round(ConfigHandler.durabilitySilverShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialSilver, "ingotSilver");
+					shieldTowerSilver.setTowerShield(true);
 					reg.register(shieldTowerSilver);
 				}
 			}
@@ -221,12 +232,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldInvar = new ItemShieldExtraMaterial("shield_basic_invar", ConfigHandler.durabilityInvarShield, ModHelper.materialInvar, "ingotInvar");
+					shieldInvar = new ItemShieldExtraMaterial("shield_basic_invar", Math.round(ConfigHandler.durabilityInvarShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialInvar, "ingotInvar");
 					reg.register(shieldInvar);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerInvar = new ItemShieldExtraMaterial("shield_tower_invar", ConfigHandler.durabilityInvarShield, ModHelper.materialInvar, "ingotInvar");
+					shieldTowerInvar = new ItemShieldExtraMaterial("shield_tower_invar", Math.round(ConfigHandler.durabilityInvarShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialInvar, "ingotInvar");
+					shieldTowerInvar.setTowerShield(true);
 					reg.register(shieldTowerInvar);
 				}
 			}
@@ -234,12 +246,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldPlatinum = new ItemShieldExtraMaterial("shield_basic_platinum", ConfigHandler.durabilityPlatinumShield, ModHelper.materialPlatinum, "ingotPlatinum");
+					shieldPlatinum = new ItemShieldExtraMaterial("shield_basic_platinum", Math.round(ConfigHandler.durabilityPlatinumShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialPlatinum, "ingotPlatinum");
 					reg.register(shieldPlatinum);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerPlatinum = new ItemShieldExtraMaterial("shield_tower_platinum", ConfigHandler.durabilityPlatinumShield, ModHelper.materialPlatinum, "ingotPlatinum");
+					shieldTowerPlatinum = new ItemShieldExtraMaterial("shield_tower_platinum", Math.round(ConfigHandler.durabilityPlatinumShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialPlatinum, "ingotPlatinum");
+					shieldTowerPlatinum.setTowerShield(true);
 					reg.register(shieldTowerPlatinum);
 				}
 			}
@@ -247,12 +260,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldElectrum = new ItemShieldExtraMaterial("shield_basic_electrum", ConfigHandler.durabilityElectrumShield, ModHelper.materialElectrum, "ingotElectrum");
+					shieldElectrum = new ItemShieldExtraMaterial("shield_basic_electrum", Math.round(ConfigHandler.durabilityElectrumShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialElectrum, "ingotElectrum");
 					reg.register(shieldElectrum);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerElectrum = new ItemShieldExtraMaterial("shield_tower_electrum", ConfigHandler.durabilityElectrumShield, ModHelper.materialElectrum, "ingotElectrum");
+					shieldTowerElectrum = new ItemShieldExtraMaterial("shield_tower_electrum", Math.round(ConfigHandler.durabilityElectrumShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialElectrum, "ingotElectrum");
+					shieldTowerElectrum.setTowerShield(true);
 					reg.register(shieldTowerElectrum);
 				}
 			}
@@ -260,12 +274,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldNickel = new ItemShieldExtraMaterial("shield_basic_nickel", ConfigHandler.durabilityNickelShield, ModHelper.materialNickel, "ingotNickel");
+					shieldNickel = new ItemShieldExtraMaterial("shield_basic_nickel", Math.round(ConfigHandler.durabilityNickelShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialNickel, "ingotNickel");
 					reg.register(shieldNickel);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerNickel = new ItemShieldExtraMaterial("shield_tower_nickel", ConfigHandler.durabilityNickelShield, ModHelper.materialNickel, "ingotNickel");
+					shieldTowerNickel = new ItemShieldExtraMaterial("shield_tower_nickel", Math.round(ConfigHandler.durabilityNickelShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialNickel, "ingotNickel");
+					shieldTowerNickel.setTowerShield(true);
 					reg.register(shieldTowerNickel);
 				}
 			}
@@ -273,12 +288,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldLead = new ItemShieldExtraMaterial("shield_basic_lead", ConfigHandler.durabilityLeadShield, ModHelper.materialLead, "ingotLead");
+					shieldLead = new ItemShieldExtraMaterial("shield_basic_lead", Math.round(ConfigHandler.durabilityLeadShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialLead, "ingotLead");
 					reg.register(shieldLead);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerLead = new ItemShieldExtraMaterial("shield_tower_lead", ConfigHandler.durabilityLeadShield, ModHelper.materialLead, "ingotLead");
+					shieldTowerLead = new ItemShieldExtraMaterial("shield_tower_lead", Math.round(ConfigHandler.durabilityLeadShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialLead, "ingotLead");
+					shieldTowerLead.setTowerShield(true);
 					reg.register(shieldTowerLead);
 				}
 			}
@@ -314,12 +330,13 @@ public class ItemRegistrySS
 			{
 				if(!ConfigHandler.disableStandardShields)
 				{
-					shieldConstantan = new ItemShieldExtraMaterial("shield_basic_constantan", ConfigHandler.durabilityConstantanShield, ModHelper.materialConstantan, "ingotConstantan");
+					shieldConstantan = new ItemShieldExtraMaterial("shield_basic_constantan", Math.round(ConfigHandler.durabilityConstantanShield * ConfigHandler.durabilityMultiplierStandardShields),ModHelper.materialConstantan, "ingotConstantan");
 					reg.register(shieldConstantan);
 				}
 				if(!ConfigHandler.disableTowerShields)
 				{
-					shieldTowerConstantan = new ItemShieldExtraMaterial("shield_tower_constantan", ConfigHandler.durabilityConstantanShield, ModHelper.materialConstantan, "ingotConstantan");
+					shieldTowerConstantan = new ItemShieldExtraMaterial("shield_tower_constantan", Math.round(ConfigHandler.durabilityConstantanShield * ConfigHandler.durabilityMultiplierTowerShields),ModHelper.materialConstantan, "ingotConstantan");
+					shieldTowerConstantan.setTowerShield(true);
 					reg.register(shieldTowerConstantan);
 				}
 			}

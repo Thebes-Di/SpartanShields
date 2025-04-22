@@ -74,6 +74,9 @@ public class Reference
 	
 	public static final int DefaultDurabilityThaumiumShield = 1024;		// New in 1.5
 	public static final int DefaultDurabilityVoidShield = 225;
+
+	public static final float DefaultDurabilityMultiplierTowerShield = 1;
+	public static final float DefaultDurabilityMultiplierStandardShield = 0.7F;
 	
 	public static final int DefaultCooldownShieldBash = 30;
 	

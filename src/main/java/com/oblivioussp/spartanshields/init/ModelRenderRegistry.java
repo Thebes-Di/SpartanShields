@@ -93,8 +93,8 @@ public class ModelRenderRegistry
 	{
 		if(item == null)	return;
 
-		LogHelper.debug("Registering model of item: " + StringHelper.stripUnlocalizedName(item.getUnlocalizedName()));
-		ModelResourceLocation modelLoc = new ModelResourceLocation(StringHelper.stripUnlocalizedName(item.getUnlocalizedName()), "inventory");
+		LogHelper.debug("Registering model of item: " + StringHelper.stripUnlocalizedName(item.getTranslationKey()));
+		ModelResourceLocation modelLoc = new ModelResourceLocation(StringHelper.stripUnlocalizedName(item.getTranslationKey()), "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, 0, modelLoc);
 	}
 	

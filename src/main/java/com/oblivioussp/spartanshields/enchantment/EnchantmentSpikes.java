@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.oblivioussp.spartanshields.init.EnchantmentRegistry;
 import com.oblivioussp.spartanshields.item.ItemShieldBase;
+import com.oblivioussp.spartanshields.util.ConfigHandler;
 import com.oblivioussp.spartanshields.util.LogHelper;
 import com.oblivioussp.spartanshields.util.Reference;
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.oblivioussp.spartanshields.client.gui.CreativeTabsSS;
+import com.oblivioussp.spartanshields.util.ConfigHandler;
 import com.oblivioussp.spartanshields.util.Reference;
 import com.oblivioussp.spartanshields.util.StringHelper;
 
@@ -34,19 +35,29 @@ public abstract class ItemShieldBase extends ItemShield
 		super();
 		this.setCreativeTab(CreativeTabsSS.TAB_SS);
 		this.setRegistryName(unlocName);
-		this.setUnlocalizedName(unlocName);
+		this.setTranslationKey(unlocName);
 	}
-	
-	@Override
-	public String getUnlocalizedName()
-	{
-		return StringHelper.getItemUnlocalizedName(super.getUnlocalizedName());
+
+	private boolean isTowerShield;
+
+	public boolean isTowerShield() {
+		return isTowerShield;
 	}
-	
+
+	public void setTowerShield(boolean towerShield) {
+		this.isTowerShield = towerShield;
+	}
+
 	@Override
-	public String getUnlocalizedName(ItemStack itemStack)
+	public String getTranslationKey()
 	{
-		return StringHelper.getItemUnlocalizedName(super.getUnlocalizedName());
+		return StringHelper.getItemUnlocalizedName(super.getTranslationKey());
+	}
+
+	@Override
+	public String getTranslationKey(ItemStack itemStack)
+	{
+		return StringHelper.getItemUnlocalizedName(super.getTranslationKey());
 	}
 	
 	@Override
@@ -93,9 +104,11 @@ public abstract class ItemShieldBase extends ItemShield
 	}*/
 	
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
-	{
-		return enchantment == Enchantments.KNOCKBACK || super.canApplyAtEnchantingTable(stack, enchantment);
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if (enchantment == Enchantments.KNOCKBACK && !ConfigHandler.disableShieldBash) {
+			return !(this.isTowerShield && ConfigHandler.disableTowerShieldBashOnly) || super.canApplyAtEnchantingTable(stack, enchantment);
+		}
+		return super.canApplyAtEnchantingTable(stack, enchantment);
 	}
 
 	@Override
@@ -112,7 +125,7 @@ public abstract class ItemShieldBase extends ItemShield
     {
     	tooltip.add(TextFormatting.BLUE + StringHelper.translateFormattedString("shieldBash", "tooltip", Reference.ModID, Minecraft.getMinecraft().gameSettings.keyBindAttack.getDisplayName() /*StringHelper.translateString("buttonShieldBash", "tooltip")*/));
     }
-    
+
     /**
      * Allows shields to customise how they take damage. Called from EventHandlerSS.
      * @param shieldStack The Shield ItemStack

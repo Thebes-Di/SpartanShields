@@ -14,7 +14,7 @@ public class ItemSS extends Item
 		super();
 		this.setCreativeTab(CreativeTabsSS.TAB_SS);
 		this.setRegistryName(unlocName);
-		this.setUnlocalizedName(unlocName);
+		this.setTranslationKey(unlocName);
 	}
 	
 	/*@Override

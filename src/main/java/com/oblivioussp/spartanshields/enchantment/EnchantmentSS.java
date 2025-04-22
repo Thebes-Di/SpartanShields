@@ -2,6 +2,7 @@ package com.oblivioussp.spartanshields.enchantment;
 
 import com.oblivioussp.spartanshields.item.ItemShieldBase;
 
+import com.oblivioussp.spartanshields.util.ConfigHandler;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
@@ -11,7 +12,13 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public abstract class EnchantmentSS extends Enchantment 
 {
-	public static EnumEnchantmentType TYPE_SHIELD = EnumHelper.addEnchantmentType("ss_shield", (item) -> item instanceof ItemShieldBase);
+	public static final EnumEnchantmentType TYPE_SHIELD = EnumHelper.addEnchantmentType("ss_shield", item -> {
+		if (item instanceof ItemShieldBase) {
+			ItemShieldBase shield = (ItemShieldBase) item;
+			return !(shield.isTowerShield() && ConfigHandler.disableTowerShieldBashOnly);
+		}
+		return false;
+	});
 	
 	protected EnchantmentSS(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots) 
 	{
