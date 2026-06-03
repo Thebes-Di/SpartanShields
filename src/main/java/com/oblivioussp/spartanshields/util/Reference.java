@@ -16,7 +16,7 @@ public class Reference
 	// Mod information
 	public static final String ModID = "spartanshields";
 	public static final String ModName = "Spartan Shields";
-	public static final String ModVersion = "1.5.5";
+	public static final String ModVersion = "1.5.6";
 	public static final String ModDependencies = "after:redstoneflux;after:enderio;after:rftools;after:botania;after:redstonearsenal;after:abyssalcraft;after:betterwithmods;after:thaumcraft";
 	public static final String McVersion = "[1.12.2]";
 	public static final String ConfigVersion = "1";

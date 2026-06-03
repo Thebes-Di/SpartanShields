@@ -99,6 +99,7 @@ public class ConfigHandler
 	public static int cooldownShieldBash = 30;
 	public static boolean disableShieldBash = false;
 	public static boolean disableTowerShieldBashOnly = false;
+	public static boolean disableTowerShieldSpikesEnchantmentOnly = false;
 	
 	public static final String categoryVanilla = "vanilla";
 	public static final String categoryModdedCommon = "moddedCommon";
@@ -152,6 +153,7 @@ public class ConfigHandler
 		cooldownShieldBash = getInt("cooldownShieldBash", Configuration.CATEGORY_GENERAL, Reference.DefaultCooldownShieldBash, 1, 1000, "Cooldown period for Shield Bashes.");
 		disableShieldBash = getBoolean("disableShieldBash", Configuration.CATEGORY_GENERAL, false, "Set to true to disable the Shield Bash feature.");
 		disableTowerShieldBashOnly = getBoolean("disableTowerShieldBashOnly", Configuration.CATEGORY_GENERAL, false, "Set to true to disable the Shield Bash feature only for tower shield.");
+		disableTowerShieldSpikesEnchantmentOnly = getBoolean("disableTowerShieldSpikesEnchantmentOnly", Configuration.CATEGORY_GENERAL, false, "Set to true to disable spikes enchantment only for tower shield.");
 		
 		durabilityWoodShield = getInt("durabilityWoodShield", categoryVanilla, Reference.DefaultDurabilityWoodShield, 1, 100000, "Tweaks the durability of the Crude Wooden Shield.");
 		durabilityStoneShield = getInt("durabilityStoneShield", categoryVanilla, Reference.DefaultDurabilityStoneShield, 1, 100000, "Tweaks the durability of the Stone Braced Shield.");

@@ -15,7 +15,7 @@ public abstract class EnchantmentSS extends Enchantment
 	public static final EnumEnchantmentType TYPE_SHIELD = EnumHelper.addEnchantmentType("ss_shield", item -> {
 		if (item instanceof ItemShieldBase) {
 			ItemShieldBase shield = (ItemShieldBase) item;
-			return !(shield.isTowerShield() && ConfigHandler.disableTowerShieldBashOnly);
+			return !(shield.isTowerShield() && ConfigHandler.disableTowerShieldSpikesEnchantmentOnly);
 		}
 		return false;
 	});
